@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#EAFEF0">
+  <meta name="description" content="给陈思罕 JACK 的生日小屋。与 honey 一起探索、拆开礼物、留下祝福，让金粉色烟花为你绽放。">
+  <title>JACK · 一间藏着喜欢的生日小屋</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍯%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <a href="#room" class="skip-link">跳到生日小屋</a>
+  <header class="site-header">
+    <a class="brand" href="#"><span class="brand-mark">⌂<i>♥</i></span><span>honey’s little room<small>A BIRTHDAY FOR JACK</small></span></a>
+    <nav aria-label="主导航"><a href="#room" class="active">生日小屋</a><a href="#wall">祝福墙 <span>↗</span></a></nav>
+    <button class="sound-button" id="sound-toggle" aria-pressed="false" aria-label="播放轻柔背景音乐"><span>♫</span><span id="sound-label">声音关</span></button>
+  </header>
+  <aside id="music-panel" class="music-panel" aria-label="太阳官方音乐播放器" hidden>
+    <div class="music-panel-heading"><span>♫ 小屋里的歌</span><button id="close-music" aria-label="关闭音乐播放器并停止播放">×</button></div>
+    <p class="music-track-title">太阳 (Live)<small>TF家族-陈思罕</small></p>
+    <iframe id="qq-player" title="QQ音乐官方播放器：陈思罕 太阳 Live" allow="autoplay" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <p class="music-help">点击播放器播放；可继续探索小屋。<br>播放受 QQ 音乐地区及版权限制，若不可用，可尝试在 QQ 音乐打开。</p>
+    <a id="qq-track-link" href="https://y.qq.com/n/ryqq_v2/songDetail/003j9YBT3Yeo8y" target="_blank" rel="noopener noreferrer">在 QQ 音乐打开 ↗</a>
+  </aside>
+  <main>
+    <section class="hero" id="room" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> NOVEMBER 08 · A DAY JUST FOR YOU</div>
+        <h1 id="hero-title"><span class="jack">Dear <em>JACK,</em><i>✳</i></span><span class="cn-title">生日快乐</span></h1>
+        <p class="intro">这里有毛茸茸的陪伴、轻轻响起的旋律，<br class="desktop-break">还有 honey 为你准备的一点小小心意。<br>慢慢探索吧，惊喜就在某个角落。</p>
+        <div class="hero-actions"><button class="primary" id="start-explore">推开生日小屋 <span>↗</span></button><a class="text-link" href="#wall">看看大家的祝福 <span>→</span></a></div>
+        <div class="birthday-note"><span class="drawn-star">✧</span><p>陈思罕 <span>CHEN SIHAN · 2011.11.08</span><small>因为有你们在，我感受到的幸福总是大过一切。谢谢你们成为照亮我的一束光，我永远爱你们。</small></p></div>
+      </div>
+      <div class="room-column">
+        <div class="room-meta"><span><i></i> HONEY’S SECRET PLACE</span><span>01 / THE BIRTHDAY ROOM</span></div>
+        <div class="room-stage" id="room-stage" tabindex="0" aria-label="可交互的三维生日小屋，拖动调整视角，或使用下方按钮探索">
+          <div class="room-halo"></div><div id="scene-container"></div>
+          <div id="loading"><span class="loader-house">⌂</span>正在点亮小屋…</div>
+          <div class="room-label">给你一整个温柔的宇宙 <span>✧</span></div>
+          <button class="reset-view" id="reset-view" aria-label="重置小屋视角" title="重置视角">⟲</button>
+          <div class="scene-tip" id="scene-tip"><span>✦</span> 试着点一下中间的礼物盒</div>
+          <div class="speech" id="speech" role="status" aria-live="polite"></div>
+          <canvas id="fireworks" aria-hidden="true"></canvas>
+          <div class="birthday-reveal" id="birthday-reveal" aria-hidden="true"><small>ALL OUR LOVE, JUST FOR YOU</small><strong>生日快乐，陈思罕</strong><span>愿你眼里有光，心中有热爱。♡</span></div>
+        </div>
+        <div class="room-toolbar"><span class="drag-hint">↔ 拖动小屋，换个角度看喜欢</span><span id="found-count">发现彩蛋 <b>0 / 4</b></span></div>
+        <div class="object-buttons" aria-label="探索房间物品"><button data-object="guitar">♫ 电吉他</button><button data-object="golden">🐕 大金毛</button><button data-object="dachshund">🐾 小腊肠</button><button data-object="cat">🐈 灰色猫咪</button><button data-object="gift" class="gift-shortcut">✧ 拆开礼物</button></div>
+      </div>
+    </section>
+    <section class="ritual" aria-label="生日惊喜步骤">
+      <div class="ritual-intro"><span>一点小心意，</span><em>等你亲手开启。</em></div>
+      <div class="ritual-step" id="step-1"><span class="step-icon">01</span><p>拆一份惊喜<small>点开礼物，发现草莓蛋糕</small></p><span class="step-arrow">→</span></div>
+      <div class="ritual-step" id="step-2"><span class="step-icon">02</span><p>留一句祝福<small>把想说的话，交给星光</small></p><span class="step-arrow">→</span></div>
+      <div class="ritual-step" id="step-3"><span class="step-icon">03</span><p>许一个心愿<small>吹灭蜡烛，让烟花绽放</small></p></div>
+    </section>
+    <section class="wall-section" id="wall" aria-labelledby="wall-title">
+      <div class="wall-heading"><div><div class="eyebrow">LITTLE WORDS, LOTS OF LOVE</div><h2 id="wall-title">每一句喜欢，<em>都有回响。</em><span>♡</span></h2><p>来自 honey 的生日来信，慢慢读，每一封都很甜。</p></div><button class="primary" id="write-wish">＋ 留下我的祝福</button></div>
+      <div class="wall-filter"><div class="total"><span class="dot"></span>已收到 <strong id="wish-total">—</strong> 份祝福<small>不含演示留言</small></div><span class="sort-label">↓ 最新发布</span></div>
+      <div class="preview-notice"><span>预览版</span><p>新祝福保存在本机服务器数据库。当前尚未公开上线；示例卡片均标有「演示留言」。</p><button id="config-info">保存说明 ↗</button></div>
+      <p id="wall-status" class="wall-status" role="status" aria-live="polite"></p>
+      <div id="wish-grid" class="wish-grid"></div>
+      <button id="load-more" class="load-more" hidden>加载更多祝福 <span>↓</span></button>
+      <div class="wall-end">♡ <span>心意在这里，慢慢长成一片星光</span> ♡</div>
+    </section>
+    <footer><div class="brand footer-brand"><span class="brand-mark">⌂<i>♥</i></span><span>Made with love, by honey.</span></div><p>献给陈思罕 JACK · 11.08<br><small>非官方粉丝生日企划 · 每一份喜欢，都温柔以待</small></p><a href="#room">回到小屋 ↑</a></footer>
+  </main>
+  <dialog id="wish-dialog" aria-labelledby="form-title">
+    <button class="dialog-close" data-close="wish-dialog" aria-label="关闭祝福窗口">×</button>
+    <div class="dialog-eyebrow">A LITTLE WISH FOR JACK</div><div class="modal-illustration">🍓<span>✧</span></div>
+    <h2 id="form-title">把祝福，写进今天。</h2><p class="dialog-intro">你的心意，会成为小屋里的一束光。</p>
+    <form id="wish-form">
+      <fieldset class="avatars"><legend>选一个今天的你</legend><div id="avatar-options"></div></fieldset>
+      <label class="field-label" for="nickname">你的昵称 <span>1–16 字</span></label><input id="nickname" name="nickname" maxlength="32" required placeholder="比如：一罐小蜂蜜" autocomplete="nickname">
+      <label class="field-label" for="message">想对 JACK 说的话 <span id="char-count">0 / 200</span></label><textarea id="message" name="message" rows="4" maxlength="400" required placeholder="愿你自由生长，也一直被爱。生日快乐，JACK！"></textarea>
+      <label class="honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+      <p class="form-note">无需注册 · 友善留言 · 每次提交间隔 30 秒<br>预览期间，留言将保存在这台服务器中。</p>
+      <p id="form-error" class="form-error" role="alert"></p><button class="primary submit-wish" type="submit">送出这份心意 <span>♡</span></button>
+    </form>
+  </dialog>
+  <dialog id="candle-dialog" aria-labelledby="candle-title"><button class="dialog-close" data-close="candle-dialog" aria-label="关闭吹蜡烛窗口">×</button><div class="dialog-eyebrow">MAKE A WISH</div><div class="candle-drawing"><span class="flame"></span><i></i><b>🍓</b></div><h2 id="candle-title">祝福送达，许个愿吧。</h2><p class="dialog-intro">把温柔留在心底，再轻轻吹灭蜡烛。<br>一场金粉色烟花，正在等你。</p><button class="primary blow-button" id="blow-button">按住 1 秒，吹灭蜡烛 <span>✧</span></button><button class="mic-button" id="mic-button">或者，用麦克风轻轻吹气</button><p id="mic-status" class="form-note" role="status">麦克风仅用于本机检测吹气，不录音、不上传。</p></dialog>
+  <dialog id="info-dialog" aria-labelledby="info-title"><button class="dialog-close" data-close="info-dialog" aria-label="关闭保存说明">×</button><div class="dialog-eyebrow">ABOUT THIS PREVIEW</div><h2 id="info-title">心意，保存在哪里？</h2><div class="info-copy"><p><strong>已可用：</strong>匿名提交、头像选择、数据库持久保存、最新排序、分页、真实祝福计数、服务端字数校验、基础词语过滤、30 秒限流与重复内容检测。</p><p><strong>当前范围：</strong>本机预览。数据库由本机服务器保存，刷新页面不会丢失；演示留言不计入真实总数。</p><p><strong>公开上线前：</strong>需要部署到持续运行的 Node.js 服务器、配置 HTTPS 域名和持久磁盘备份。所有访问同一服务器的访客将共享同一数据库。</p><p><strong>内容管理：</strong>当前仅有基础规则过滤。正式公开前建议接入更完善的内容审核、验证码和管理员删除功能。服务器部署说明见项目 README。</p></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
+
